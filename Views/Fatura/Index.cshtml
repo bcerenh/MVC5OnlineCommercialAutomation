@@ -1,0 +1,79 @@
+﻿@using MvcWebTicariOtomasyon.Models.Siniflar;
+@model List<Fatura>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<table class="table table-bordered" style="margin-top:20px; ">
+
+
+    <tr>
+        <th>ID</th>
+        <th>Seri No</th>
+        <th>Sıra No</th>
+        <th>Tarih</th>
+        <th>Saat</th>
+        <th>Vergi Dairesi</th>
+        <th>Toplam</th>
+        <th>Teslim Eden</th>
+        <th>Teslim Alan</th>
+        <th>Güncelle</th>
+        <th>Detaylar</th>
+        @*<th>Popup Liste</th>*@
+        <th>Yeni Kalem</th>
+    </tr>
+    @foreach (var k in Model)
+    {
+        <tr>
+            <td>@k.FaturaID</td>
+            <td>@k.FaturaSeriNo</td>
+            <td>@k.FaturaSiraNo</td>
+            <td>@k.FaturaTarih.ToShortDateString()</td>
+            <td>@k.FaturaSaat</td>
+            <td>@k.VergiDairesi</td>
+            <td>@k.Toplam</td>
+            <td>@k.TeslimEden</td>
+            <td>@k.TeslimAlan</td>
+            <td><a href="/Fatura/FaturaGetir/@k.FaturaID" class="btn btn-warning">Güncelle</a></td>
+            <td><a href="/Fatura/FaturaDetay/@k.FaturaID" class="btn btn-success" style="background-color:cadetblue">Detaylar</a></td>
+            @*<td><a href="/Fatura/FaturaDetay/@k.FaturaID" class="btn btn-success" style="background-color:blueviolet">Popup</a></td>*@
+            <td><a href="/Fatura/FaturaDetay/@k.FaturaID" class="btn btn-success" style="background-color:chocolate">Kalem</a></td>
+        </tr>
+    }
+</table>
+<a href="/Fatura/FaturaEkle/" class="btn btn-primary">Yeni Fatura Girişi</a>
+<br /> <br />
+<button type="button" class="btn btn-warning" style="background-color:orangered;color:white" data-toggle="modal" data-target="#Modal1">Popup Penceresi</button>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Popup Diyalog Ekranı</h2>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Seri no</td>
+                        <td>Sıra no</td>
+                        <td>Tutar</td>
+                    </tr>
+                    @foreach (var x in Model)
+
+                    {
+                        <tr>
+                            <td>@x.FaturaSiraNo</td>
+                            <td>@x.FaturaSeriNo</td>
+                            <td>@x.Toplam</td>
+                            
+                        </tr>
+                    }
+                    </table>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Tamam</button> @*//dismiss olunca tamam a basınca açılan pencere yok olur*@ 
+            </div>
+        </div>
+    </div>
+</div>
+
+

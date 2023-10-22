@@ -1,0 +1,51 @@
+﻿@using MvcWebTicariOtomasyon.Models.Siniflar
+@model List<SatisHareketi>
+@{
+    ViewBag.Title = "SatisDetay";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+<h2>Satış Detay </h2>
+<br />
+
+<table class="table table-condensed">
+    <tr>
+        <th>Satış Id</th>
+        <th>Ürün</th>
+        <th>Cari</th>
+        <th>Personel</th>
+        <th>Fiyat</th>
+        <th>Adet</th>
+        <th>Toplam</th>
+        <th>Tarih</th>
+    </tr>
+    
+        @foreach (var x in Model)
+        {
+        <tr>
+            <td>@x.SatisHareketiID</td>
+            <td>@x.Urun.UrunAd</td>
+            <td>@x.Cari.CariAd @x.Cari.CariSoyad</td>
+            <td>@x.Personel.PersonelAd @x.Personel.PersonelSoyad</td>
+            <td>@x.Fiyat</td>
+            <td>@x.Adet</td>
+            <td>@x.ToplamTutar</td>
+            <td>@x.SatisTarihi</td>
+        </tr>
+         }
+       
+    </table>
+
+@*<a href="Urun/UrunListesi/" target="_blank">
+        <input type="button" class="btn btn-info" value="Yazdır">
+    </a>*@
+@*<button class="btn btn-default" href="/Urun/UrunListesi/" style="background-color:dodgerblue">Yazdır</button>*@
+
+
+@*@<button class="btn btn-default" onclick="table.print()"  style="background-color:dodgerblue">Yazdır</button>*@
+
+@*<input type="button" value="Yazdır" onclick="printfunction" />*@
+<input type="button" value="Yazdır" onclick="window.print('#table')" />
+
+

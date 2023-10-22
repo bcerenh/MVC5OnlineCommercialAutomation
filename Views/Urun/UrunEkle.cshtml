@@ -1,0 +1,41 @@
+﻿@model MvcWebTicariOtomasyon.Models.Siniflar.Urun
+@{
+    ViewBag.Title = "UrunEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+<h2>Yeni Ürün Sayfası</h2>
+<br />
+@using (Html.BeginForm("UrunEkle", "Urun", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <form class="form-group" method="post">
+        @Html.Label("Ürün Adı Giriniz:")
+        @Html.TextBoxFor(x => x.UrunAd, new { @class = "form-control" })
+        <br />
+        @Html.Label("Marka Giriniz:")
+        @Html.TextBoxFor(x => x.UrunMarka, new { @class = "form-control" })
+        <br />
+        @Html.Label("Ürün Stok Adedini Giriniz:")
+        @Html.TextBoxFor(x => x.UrunStok, new { @class = "form-control" })
+        <br />
+        @Html.Label("Ürünün Alış Fiyatını Giriniz:")
+        @Html.TextBoxFor(x => x.UrunAlisFiyat, new { @class = "form-control" })
+        <br />
+        @Html.Label("Ürünün Satış Fiyatını Giriniz:")
+        @Html.TextBoxFor(x => x.UrunSatisFiyat, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.UrunDurum)
+        @Html.TextBoxFor(x => x.UrunDurum, new { @class = "form-control" })
+        <br />
+        @Html.Label("Ürünün Görselini Ekleyiniz:")
+        <input type="file" name="UrunGorsel" />
+        @*@Html.TextBoxFor(x => x.UrunGorsel, new { @class = "form-control" })*@
+        <br />
+        @Html.LabelFor(x => x.Kategori.KategoriID)
+        @Html.DropDownListFor(x => x.Kategoriid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+        @Html.TextBoxFor(x => x.Kategoriid, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-primary">Kaydet</button>
+    </form>
+}

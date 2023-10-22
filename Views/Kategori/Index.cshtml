@@ -1,0 +1,48 @@
+﻿@using MvcWebTicariOtomasyon.Models.Siniflar
+@using PagedList
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<Kategori>
+    @*//bu sayfada çağrılmak istenen ifade yazılır burada kategori listelemek isteniyor o yüzden kategori yazıldı*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@*model kategoriye bağlı , kategoride controller deki metoda bağlı .*@
+<table class="table table-bordered" style="margin-top:20px" @*margin-left:20px; margin-right:20px;"*@> @*table yapısı kullanılarak tablo yapısı oluşturulacak*@
+
+   
+        @*// tr uzun  satır için*@
+
+        @*//th  sütun için*@
+
+    <tr>
+       <th>ID</th>
+       <th>KATEGORİ ADI</th> 
+       <th>KATEGORİ SİL</th>
+       <th>KATEGORİ GÜNCELLE</th>
+    </tr>
+    @foreach (var k in Model)
+    {
+        <tr>
+
+            <td>  @k.KategoriID</td>
+            <td>  @k.KategoriAd</td>
+            <td><a href="/Kategori/KategoriSil/@k.KategoriID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Kategori/KategoriGetir/@k.KategoriID" class="btn btn-warning">Güncelle</a></td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager((IPagedList)Model,sayfa=>Url.Action("Index",new { sayfa }),new PagedListRenderOptions
+{
+LiElementClasses=new List<string>
+{
+    "page-link"
+}
+})
+ @*sayfa sıralanmasında formatın güçlü durması için*@ 
+<a href="/Kategori/KategoriEkle" class="btn btn-primary">Yeni Kategori Ekle</a>
+
+

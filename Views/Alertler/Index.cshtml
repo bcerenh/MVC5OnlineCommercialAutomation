@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br /> <br />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<button class="btn btn-info" id="Btn1">MESAJ1</button>
+<button class="btn btn-danger" id="Btn2">MESAJ2</button>
+<script>
+    $('#Btn1').click(function () {
+        swal("Kategori Başarılı Bir Şekilde Eklendi")
+    });
+</script>
+
+<script>
+    $('#Btn2').click(function () {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your imaginary file has been deleted!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
+    });
+</script>
+
+@*//sweet alert sitesinden istedğin uyarıyı kaydedip deneyebilirsin*@ 
